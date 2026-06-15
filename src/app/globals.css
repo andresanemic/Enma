@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Tailwind v4: tokens en @theme, no en tailwind.config.ts — lore/routing.md */
+@theme {
+  /* Paleta Enma */
+  --color-cream: #F7DFBA;
+  --color-cream-light: #F8EDDD;
+  --color-orange: #FEA94F;
+  --color-orange-dark: #F1541C;
+  --color-red-deep: #B12C00;
+  --color-green: #3E7C6C;
+  --color-green-dark: #304B3D;
+  --color-teal: #205358;
+  --color-ink: #1A1A1A;
+
+  /* Tipografías */
+  --font-display: var(--font-manrope);
+  --font-body: var(--font-outfit);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* overflow-x en AMBOS html y body — lore/layout.md */
+html,
+body {
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  background-color: #F7DFBA;
+  color: #1A1A1A;
+}
+
+/* Scroll indicator */
+@keyframes scroll-line {
+  0%   { transform: scaleY(0) translateY(0); opacity: 1; transform-origin: top; }
+  50%  { transform: scaleY(1) translateY(0); opacity: 1; transform-origin: top; }
+  100% { transform: scaleY(1) translateY(0); opacity: 0; transform-origin: bottom; }
+}
+
+/* Gentle float for decorative elements */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* Marquee — lore/animation: 4 copias → keyframe a -25% para loop sin salto */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-25%); }
+  to   { transform: translateX(0); }
+}
+
+/* Card hover shimmer */
+.card-hover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
