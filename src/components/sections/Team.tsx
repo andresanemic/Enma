@@ -39,6 +39,8 @@ export default function Team() {
   const titleRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
 
+  const valoresRef = useRef<HTMLDivElement>(null);
+
   useGSAP(() => {
     const trigger = { trigger: sectionRef.current, start: "top 85%" };
 
@@ -58,6 +60,16 @@ export default function Team() {
       {
         opacity: 1, y: 0, scale: 1,
         duration: 0.8, ease: "power2.out", stagger: 0.14, delay: 0.35,
+        scrollTrigger: trigger,
+      }
+    );
+
+    gsap.fromTo(
+      valoresRef.current,
+      { opacity: 0, y: 16 },
+      {
+        opacity: 1, y: 0,
+        duration: 0.7, ease: "power2.out", delay: 0.7,
         scrollTrigger: trigger,
       }
     );
@@ -109,7 +121,7 @@ export default function Team() {
         </p>
 
         {/* Founder cards */}
-        <div ref={cardsRef} className="grid md:grid-cols-2 gap-5">
+        <div ref={cardsRef} className="grid md:grid-cols-2 gap-5 mb-12">
           {FOUNDERS.map((f) => (
             <div
               key={f.name}
@@ -150,6 +162,26 @@ export default function Team() {
               </div>
             </div>
           ))}
+        </div>
+        {/* Valores */}
+        <div
+          ref={valoresRef}
+          className="border-t border-cream/[0.08] pt-8"
+          style={{ opacity: 0 }}
+        >
+          <p className="text-cream/30 text-[10px] tracking-[0.22em] uppercase font-body mb-4">
+            Valores
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {["Honestidad", "Transparencia", "Templanza", "Disciplina"].map((v) => (
+              <span
+                key={v}
+                className="text-cream/55 font-body text-sm border border-cream/15 rounded-full px-4 py-1.5"
+              >
+                {v}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
