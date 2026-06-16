@@ -295,7 +295,7 @@ export default function ServiciosPage() {
                 className="font-display font-light text-teal leading-[1.08] tracking-[-0.02em]"
                 style={{ fontSize: "clamp(2rem, 4.5vw, 4rem)" }}
               >
-                Cada proyecto es<br />
+                <span className="block">Cada proyecto es</span>
                 <span className="text-orange">único.</span>
               </h2>
             </div>

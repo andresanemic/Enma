@@ -104,16 +104,15 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
             </div>
 
             <h1
-              className="font-display font-light leading-[1.05] tracking-[-0.025em] mb-8"
+              className="font-display font-light leading-[1.05] tracking-[-0.025em] mb-8 overflow-hidden pb-[0.04em]"
               style={{ fontSize: "clamp(2rem, 5vw, 4rem)", color: theme.text }}
             >
-              {post.title.split(". ").map((line, i, arr) => (
-                <span key={i} className="block overflow-hidden pb-[0.04em]">
-                  <span className="h-line block" style={{ transform: "translateY(108%)", filter: "blur(10px)" }}>
-                    {line}{i < arr.length - 1 ? "." : ""}
-                  </span>
-                </span>
-              ))}
+              <span
+                className="h-line block"
+                style={{ transform: "translateY(108%)", filter: "blur(10px)" }}
+              >
+                {post.title}
+              </span>
             </h1>
 
             <p
@@ -195,7 +194,7 @@ export default function BlogArticlePage({ params }: { params: Promise<{ slug: st
               className="font-display font-light text-cream tracking-[-0.02em] leading-tight"
               style={{ fontSize: "clamp(1.4rem, 3vw, 2.2rem)" }}
             >
-              ¿Tienes un proyecto energético?<br />
+              <span className="block">¿Tienes un proyecto energético?</span>
               <span className="text-orange">Conversemos.</span>
             </p>
             <a

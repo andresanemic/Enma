@@ -228,7 +228,7 @@ function ProjectSection({ project: p, index }: { project: typeof PROJECTS[number
             className={`p-reveal font-display font-light ${textColor} leading-[1.08] tracking-[-0.02em] mb-6`}
             style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", opacity: 0 }}
           >
-            {p.title}<br />
+            <span className="block">{p.title}</span>
             <span style={{ color: p.featured ? p.dotColor : p.accent }}>{p.subtitle}</span>
           </h2>
           <p className={`p-reveal ${subtextColor} font-body text-sm leading-[1.8] mb-8 max-w-lg`} style={{ opacity: 0 }}>

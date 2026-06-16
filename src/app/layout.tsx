@@ -17,15 +17,33 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  // lore/routing: title.absolute para que la homepage ignore el template del layout
-  title: { absolute: "Enma — Energía y Manufactura Sustentable" },
+  // lore/routing: title.absolute para landing; template para páginas internas
+  title: {
+    absolute: "Enma — Energía y Manufactura Sustentable",
+    template: "%s · Enma",
+  },
   description:
-    "Soluciones socio-técnicas a la medida para problemas reales de energía, reciclaje y calefacción, hechas desde la Patagonia chilena.",
+    "Empresa chilena de ingeniería energética y manufactura avanzada operando desde la Región de Aysén. Consultoría, simulaciones CFD, prototipado y formulación de proyectos para el sector público y privado.",
   metadataBase: new URL("https://enmachile.com"),
+  keywords: ["energía renovable", "Aysén", "Patagonia", "ingeniería energética", "simulaciones CFD", "manufactura sustentable", "huella de carbono"],
+  authors: [{ name: "Enma SPA", url: "https://enmachile.com" }],
   openGraph: {
     locale: "es_CL",
     type: "website",
     siteName: "Enma",
+    title: "Enma — Energía y Manufactura Sustentable",
+    description:
+      "Soluciones de ingeniería energética y manufactura avanzada desde la Patagonia chilena. Puerto Cisnes, Región de Aysén.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Enma — Energía y Manufactura Sustentable",
+    description: "Ingeniería energética y manufactura avanzada desde la Patagonia chilena.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
   },
 };
 

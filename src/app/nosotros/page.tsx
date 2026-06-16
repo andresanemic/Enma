@@ -203,7 +203,7 @@ export default function NosotrosPage() {
             className="font-display font-light text-teal mb-16 tracking-[-0.02em] leading-[1.05]"
             style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
           >
-            Dos ingenieros,<br />
+            <span className="block">Dos ingenieros,</span>
             <span className="text-orange">un territorio.</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-5">
