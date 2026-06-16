@@ -7,19 +7,23 @@ import { usePathname } from "next/navigation";
 import { gsap } from "@/lib/gsap";
 
 const NAV_LINKS = [
-  { href: "/nosotros", label: "Nosotros" },
+  { href: "/nosotros",  label: "Nosotros"  },
   { href: "/servicios", label: "Servicios" },
   { href: "/proyectos", label: "Proyectos" },
-  { href: "/blog", label: "Blog" },
+  { href: "/blog",      label: "Blog"      },
 ];
 
 export default function Header() {
-  const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const headerRef = useRef<HTMLElement>(null);
-  const overlayLinksRef = useRef<(HTMLAnchorElement | null)[]>([]);
-  const hasAnimated = useRef(false);
+  const pathname    = usePathname();
+  const [scrolled, setScrolled]   = useState(false);
+  const [menuOpen, setMenuOpen]   = useState(false);
+  const headerRef        = useRef<HTMLElement>(null);
+  const drawerLinksRef   = useRef<(HTMLAnchorElement | null)[]>([]);
+  const hasAnimated      = useRef(false);
+
+  // Modo "home sin scroll" — activa el pill glassmorphism
+  const isHome         = pathname === "/";
+  const homeUnscrolled = isHome && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 70);
@@ -29,7 +33,6 @@ export default function Header() {
   }, []);
 
   // lore/animation INC-001: bifurcar por ruta para evitar FOUC en páginas no-home.
-  // pathname===null es fallback SSR → tratar como home para evitar flash de re-hydration.
   useEffect(() => {
     if (!headerRef.current || hasAnimated.current) return;
     hasAnimated.current = true;
@@ -45,42 +48,44 @@ export default function Header() {
     }
   }, [pathname]);
 
-  // lore/animation: GSAP stagger en links del overlay — no CSS transition-delay
+  // GSAP stagger para los links del drawer al abrir
   useEffect(() => {
     if (!menuOpen) return;
-    const links = overlayLinksRef.current.filter(Boolean) as HTMLAnchorElement[];
+    const links = drawerLinksRef.current.filter(Boolean) as HTMLAnchorElement[];
     gsap.fromTo(
       links,
-      { y: 32, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.07, duration: 0.55, ease: "power3.out", delay: 0.1 }
+      { y: 28, opacity: 0 },
+      { y: 0, opacity: 1, stagger: 0.07, duration: 0.5, ease: "power3.out", delay: 0.15 }
     );
   }, [menuOpen]);
 
-  const toggleMenu = () => {
-    if (!menuOpen) {
-      setMenuOpen(true);
-      document.body.style.overflow = "hidden";
-    } else {
-      // Reset link positions for next open before unmounting the open state
-      const links = overlayLinksRef.current.filter(Boolean) as HTMLAnchorElement[];
-      gsap.set(links, { opacity: 0, y: 32 });
-      // lore/scroll: '' no 'auto' para evitar scrollbar flash de ~15px
-      document.body.style.overflow = "";
-      setMenuOpen(false);
-    }
+  const openMenu = () => {
+    setMenuOpen(true);
+    document.body.style.overflow = "hidden";
   };
+
+  const closeMenu = () => {
+    const links = drawerLinksRef.current.filter(Boolean) as HTMLAnchorElement[];
+    gsap.set(links, { opacity: 0, y: 28 });
+    // lore/scroll: '' no 'auto' para evitar scrollbar flash de ~15px
+    document.body.style.overflow = "";
+    setMenuOpen(false);
+  };
+
+  const toggleMenu = () => (menuOpen ? closeMenu() : openMenu());
 
   return (
     <>
       <header
         ref={headerRef}
         style={{ opacity: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-500 px-4 sm:px-6 md:px-10 ${
           scrolled
-            ? "px-6 md:px-10 lg:px-16 py-3 bg-teal/95 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.05)]"
-            : "px-6 md:px-10 lg:px-16 py-5 bg-transparent"
+            ? "py-3 bg-teal/95 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.05)]"
+            : "py-5 bg-transparent"
         }`}
       >
+        {/* Logo — blanco sobre video (home) o sobre teal (scrolled/inner) */}
         <Link href="/" aria-label="Enma — inicio">
           <Image
             src="/logos/logo-blanco.webp"
@@ -92,88 +97,158 @@ export default function Header() {
           />
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-7" aria-label="Navegación principal">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="relative text-cream/75 hover:text-cream text-sm tracking-wide font-body transition-colors duration-200 group"
-            >
-              {link.label}
-              {/* navbar.md §4.1: underline animado — scaleX vs width (compositor puro, sin layout) */}
-              <span
-                aria-hidden="true"
-                className="absolute left-0 -bottom-0.5 h-px w-full bg-cream/50 origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"
-              />
-            </Link>
-          ))}
-          <a
-            href="mailto:contacto@enmachile.com"
-            className="text-teal bg-cream/90 hover:bg-cream px-5 py-2 rounded-full text-sm font-medium font-body transition-all duration-300"
+        {/* ── Desktop nav ── */}
+        {homeUnscrolled ? (
+          // Pill glassmorphism — motionsites.md §nav
+          <nav
+            className="hidden md:flex items-center gap-1 bg-white/70 backdrop-blur-md rounded-full pl-6 pr-1 py-1 shadow-sm border border-white/60"
+            aria-label="Navegación principal"
           >
-            Hablemos →
-          </a>
-        </nav>
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm px-3 py-2 text-teal/80 hover:text-teal font-body font-medium transition-colors duration-200"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href="mailto:contacto@enmachile.com"
+              className="ml-2 bg-teal hover:bg-teal/85 text-cream text-sm font-medium font-body px-5 py-2.5 rounded-full transition-colors duration-200"
+            >
+              Hablemos →
+            </a>
+          </nav>
+        ) : (
+          // Nav estándar — links sobre fondo teal o página interna
+          <nav
+            className="hidden md:flex items-center gap-7"
+            aria-label="Navegación principal"
+          >
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="relative text-cream/75 hover:text-cream text-sm tracking-wide font-body transition-colors duration-200 group"
+              >
+                {link.label}
+                {/* navbar.md §4.1: underline animado — scaleX (compositor puro) */}
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 -bottom-0.5 h-px w-full bg-cream/50 origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"
+                />
+              </Link>
+            ))}
+            <a
+              href="mailto:contacto@enmachile.com"
+              className="text-teal bg-cream/90 hover:bg-cream px-5 py-2 rounded-full text-sm font-medium font-body transition-all duration-300"
+            >
+              Hablemos →
+            </a>
+          </nav>
+        )}
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={toggleMenu}
-          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={menuOpen}
-          className="md:hidden flex flex-col gap-[5px] p-2 -mr-2"
-        >
-          <span
-            className={`block w-6 h-[1.5px] bg-cream origin-center transition-all duration-300 ${
-              menuOpen ? "rotate-45 translate-y-[6.5px]" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-[1.5px] bg-cream transition-all duration-300 ${
-              menuOpen ? "opacity-0 scale-x-0" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-[1.5px] bg-cream origin-center transition-all duration-300 ${
-              menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""
-            }`}
-          />
-        </button>
+        {/* ── Hamburger ── */}
+        {homeUnscrolled ? (
+          // Botón pill glass para home sin scroll — motionsites.md §nav mobile
+          <button
+            onClick={toggleMenu}
+            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={menuOpen}
+            className="md:hidden relative flex items-center justify-center w-10 h-10 rounded-full bg-white/70 backdrop-blur-md border border-white/60 text-teal transition-all duration-300 hover:bg-white/90"
+          >
+            <span
+              className={`absolute block w-[18px] h-[1.5px] bg-current origin-center transition-all duration-300 ${
+                menuOpen ? "rotate-45 translate-y-0" : "-translate-y-[4px]"
+              }`}
+            />
+            <span
+              className={`absolute block w-[18px] h-[1.5px] bg-current transition-all duration-300 ${
+                menuOpen ? "opacity-0 scale-x-0" : ""
+              }`}
+            />
+            <span
+              className={`absolute block w-[18px] h-[1.5px] bg-current origin-center transition-all duration-300 ${
+                menuOpen ? "-rotate-45 translate-y-0" : "translate-y-[4px]"
+              }`}
+            />
+          </button>
+        ) : (
+          // Hamburger estándar sobre fondo teal
+          <button
+            onClick={toggleMenu}
+            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={menuOpen}
+            className="md:hidden flex flex-col gap-[5px] p-2 -mr-2"
+          >
+            <span
+              className={`block w-6 h-[1.5px] bg-cream origin-center transition-all duration-300 ${
+                menuOpen ? "rotate-45 translate-y-[6.5px]" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-[1.5px] bg-cream transition-all duration-300 ${
+                menuOpen ? "opacity-0 scale-x-0" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-[1.5px] bg-cream origin-center transition-all duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""
+              }`}
+            />
+          </button>
+        )}
       </header>
 
-      {/* Mobile fullscreen overlay — navbar.md §3.3 */}
+      {/* ── Mobile: overlay backdrop — cierra al hacer tap fuera del drawer ── */}
       <div
-        className={`fixed inset-0 z-40 bg-teal flex flex-col items-center justify-center gap-10 transition-opacity duration-500 md:hidden ${
+        className={`md:hidden fixed inset-0 z-40 transition-opacity duration-300 ${
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={closeMenu}
+        aria-hidden="true"
+      >
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+      </div>
+
+      {/* ── Mobile: drawer lateral derecho — motionsites.md §mobile drawer ── */}
+      <div
+        className={`md:hidden fixed top-0 right-0 bottom-0 z-[45] w-[85%] max-w-sm bg-cream/95 backdrop-blur-xl shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         aria-hidden={!menuOpen}
       >
-        {/* Decorative circuit lines */}
-        <div className="absolute inset-0 opacity-[0.06]" aria-hidden="true">
-          <svg viewBox="0 0 400 600" className="w-full h-full">
-            <path d="M 400 60 H 280 Q 240 60 240 100 V 300 Q 240 340 200 340 H 0" stroke="white" strokeWidth="2" fill="none" />
-            <path d="M 400 100 H 300 Q 260 100 260 140 V 320 Q 260 360 220 360 H 0" stroke="white" strokeWidth="2" fill="none" />
-            <path d="M 400 140 H 320 Q 280 140 280 180 V 340 Q 280 380 240 380 H 0" stroke="white" strokeWidth="2" fill="none" />
-          </svg>
-        </div>
+        <div className="flex flex-col h-full pt-24 px-8 pb-8">
+          {/* Links — stagger GSAP al abrir */}
+          <nav className="flex flex-col gap-0" aria-label="Menú móvil">
+            {NAV_LINKS.map((link, i) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                ref={(el) => { drawerLinksRef.current[i] = el; }}
+                onClick={closeMenu}
+                style={{ opacity: 0 }}
+                className="text-teal text-2xl font-display font-light py-4 border-b border-teal/10 hover:text-orange transition-colors duration-200"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-        <nav className="flex flex-col items-center gap-8 relative z-10">
-          {NAV_LINKS.map((link, i) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              ref={(el) => { overlayLinksRef.current[i] = el; }}
-              onClick={toggleMenu}
-              style={{ opacity: 0 }}
-              className="text-cream text-3xl font-display font-light tracking-wide hover:text-orange transition-colors duration-200"
+          {/* CTA */}
+          <div className="mt-8">
+            <a
+              href="mailto:contacto@enmachile.com"
+              onClick={closeMenu}
+              className="flex items-center justify-center gap-2 bg-teal hover:bg-teal/90 text-cream text-sm font-medium font-body px-6 py-3 rounded-full transition-colors duration-300"
             >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+              Hablemos de tu proyecto →
+            </a>
+          </div>
 
-        <div className="absolute bottom-10 text-center">
-          <p className="text-cream/40 text-xs tracking-widest uppercase font-body">
+          {/* Footer del drawer */}
+          <p className="mt-auto text-teal/30 text-[10px] tracking-widest uppercase font-body">
             contacto@enmachile.com
           </p>
         </div>
