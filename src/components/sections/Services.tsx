@@ -106,6 +106,9 @@ export default function Services() {
       const tl = gsap.timeline({ defaults: { ease: "none" } });
 
       for (let i = 0; i < 6; i++) {
+        // La card activa sube al frente (z-index) para no quedar debajo de sus vecinas
+        tl.set(cards[i], { zIndex: 10 });
+
         // ── Expansión (hacia la derecha) ─────────────────────────────
         tl.fromTo(cards[i],
           { width: C }, { width: E, duration: 1 }
@@ -129,6 +132,9 @@ export default function Services() {
         if (i + 1 < 6) tl.to(cards[i + 1], { x: activeX,             duration: 0.5, ease: "power2.inOut" }, "<");
         if (i + 2 < 6) tl.to(cards[i + 2], { x: activeX + (C + G),   duration: 0.5, ease: "power2.inOut" }, "<");
         if (i + 3 < 6) tl.to(cards[i + 3], { x: activeX + 2 * (C + G), duration: 0.5, ease: "power2.inOut" }, "<");
+
+        // Restaurar z-index después de la salida
+        tl.set(cards[i], { zIndex: 1 });
       }
 
       ScrollTrigger.create({
@@ -145,7 +151,7 @@ export default function Services() {
   }, { scope: sectionRef });
 
   return (
-    <section ref={sectionRef} id="servicios" className="bg-green-dark overflow-hidden">
+    <section ref={sectionRef} id="servicios" className="bg-green-dark overflow-hidden min-h-screen">
       <div className="px-6 md:px-14 lg:px-24 pt-24 pb-6">
 
         {/* Header — dos columnas */}
