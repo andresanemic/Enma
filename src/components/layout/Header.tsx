@@ -15,22 +15,10 @@ const NAV_LINKS = [
 
 export default function Header() {
   const pathname    = usePathname();
-  const [scrolled, setScrolled]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
   const headerRef        = useRef<HTMLElement>(null);
   const drawerLinksRef   = useRef<(HTMLAnchorElement | null)[]>([]);
   const hasAnimated      = useRef(false);
-
-  // Modo "home sin scroll" — activa el pill glassmorphism
-  const isHome         = pathname === "/";
-  const homeUnscrolled = isHome && !scrolled;
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 70);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // lore/animation INC-001: bifurcar por ruta para evitar FOUC en páginas no-home.
   useEffect(() => {
@@ -47,6 +35,9 @@ export default function Header() {
       gsap.set(headerRef.current, { opacity: 1, y: 0 });
     }
   }, [pathname]);
+
+  // Siempre estilo Hero: pill glassmorphism, fondo transparente
+  const homeUnscrolled = true;
 
   // GSAP stagger para los links del drawer al abrir
   useEffect(() => {
@@ -79,11 +70,7 @@ export default function Header() {
       <header
         ref={headerRef}
         style={{ opacity: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-500 px-4 sm:px-6 md:px-10 ${
-          scrolled
-            ? "py-3 bg-teal/95 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.05)]"
-            : "py-5 bg-transparent"
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-500 px-4 sm:px-6 md:px-10 py-5 bg-transparent"
       >
         {/* Logo — blanco sobre video (home) o sobre teal (scrolled/inner) */}
         <Link href="/" aria-label="Enma — inicio">

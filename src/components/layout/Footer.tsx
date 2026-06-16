@@ -135,7 +135,7 @@ export default function Footer() {
             className="ft-anim flex flex-col items-start"
             style={{ opacity: 0, gap: "clamp(12px, 1.35vw, 20px)" }}
           >
-            {["Puerto Cisnes", "Región de Aysén", "Chile"].map((line) => (
+            {["Coyhaique", "Región de Aysén", "Chile"].map((line) => (
               <span key={line} className="footer-nav-link font-body cursor-default">
                 {line}
               </span>
@@ -186,7 +186,7 @@ export default function Footer() {
             © {year} Enma SPA. Todos los derechos reservados.
           </p>
           <span className="text-cream/40 font-body text-[9px] leading-[1.35]">
-            Puerto Cisnes, Región de Aysén, Chile
+            Coyhaique, Región de Aysén, Chile
           </span>
           <span className="text-cream/30 font-body text-[9px] leading-[1.35] tracking-[0.2em] uppercase">
             ENergía · MAnufactura

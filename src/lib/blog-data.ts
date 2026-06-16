@@ -24,7 +24,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Bruno Ortega",
     role: "Socio fundador de Enma",
     category: "Columna de opinión",
-    cover: "/blog/portada-1.jpg",
+    cover: "/blog/portada-1.webp",
     content: [
       { type: "p", text: "Vivir en la Región de Aysén significa pagar caro por algo tan básico como encender la luz o calefaccionar la casa. No es una percepción: es una realidad estructural. Estamos lejos, somos pocos y mover cualquier cosa hasta acá cuesta. Esa distancia se traduce, casi línea por línea, en el valor que personas y empresas pagamos por la energía, sea eléctrica o térmica." },
       { type: "p", text: "El problema es que la energía cara no se queda en la boleta. Encarece todo lo demás. Una industria que consume mucha energía simplemente no es viable en la región. El ejemplo más claro es el reciclaje: hoy buena parte de los residuos que podríamos procesar acá terminan viajando al norte de Puerto Montt, porque localmente no existe la capacidad de hacerlo a un costo razonable. Perdemos la oportunidad, el empleo y el círculo virtuoso completo." },
@@ -47,7 +47,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Patricio Campos",
     role: "Socio fundador de Enma",
     category: "Columna de opinión",
-    cover: "/blog/portada-2.jpg",
+    cover: "/blog/portada-2.webp",
     content: [
       { type: "p", text: "La mayoría de las empresas de ingeniería que ofrecen soluciones energéticas y ambientales para la Región de Aysén están instaladas en Santiago. No es un detalle menor. La realidad regional difiere por mucho de la del resto del país, y eso se nota apenas un proyecto se topa con la primera variable que nadie consideró: la logística." },
       { type: "p", text: "Acá las distancias se miden en horas de viaje por tierra y mar. El costo del combustible y la dependencia energética no son notas al pie: son factores que, si no se abordan desde la primera línea de un proyecto, pueden matarlo. A eso se suma una idiosincrasia patagona que hay que entender para poder trabajar con la gente, no a pesar de ella." },
@@ -70,7 +70,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Equipo Enma",
     role: "",
     category: "Identidad",
-    cover: "/blog/portada-3.jpg",
+    cover: "/blog/portada-3.webp",
     content: [
       { type: "p", text: "Enma es una empresa chilena nacida en la Región de Aysén que diseña soluciones sustentables con foco en energía y manufactura. Su nombre lo dice todo: viene de ENergía y MAnufactura. En una frase, ayudamos a personas, comunidades y empresas a resolver problemas de energía, reciclaje o calefacción con soluciones hechas a la medida." },
       { type: "h2", text: "¿Qué problema resuelve?" },

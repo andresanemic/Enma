@@ -120,7 +120,7 @@ export default function CTA() {
 
           {/* Location note */}
           <p className="text-teal/50 font-body text-xs tracking-widest uppercase">
-            Puerto Cisnes · Región de Aysén · Chile
+            Coyhaique · Región de Aysén · Chile
           </p>
         </div>
       </div>

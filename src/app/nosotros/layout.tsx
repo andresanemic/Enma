@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Nosotros · Enma",
   description:
-    "Conoce a Bruno Ortega y Patricio Campos, los ingenieros fundadores de Enma. Una empresa de base científico-tecnológica operando desde Puerto Cisnes, Región de Aysén, en la Patagonia chilena.",
+    "Conoce a Bruno Ortega y Patricio Campos, los ingenieros fundadores de Enma. Una empresa de base científico-tecnológica operando desde Coyhaique, Región de Aysén, en la Patagonia chilena.",
   openGraph: {
     title: "Nosotros · Enma",
     description:

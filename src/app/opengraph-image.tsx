@@ -118,7 +118,7 @@ export default function OGImage() {
         {/* Footer row */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", position: "relative" }}>
           <span style={{ fontSize: 16, color: "#F7DFBA60" }}>
-            Puerto Cisnes · Aysén · Chile
+            Coyhaique · Aysén · Chile
           </span>
           <span style={{ fontSize: 13, color: "#F7DFBA30", letterSpacing: 2 }}>
             ENergía · MAnufactura

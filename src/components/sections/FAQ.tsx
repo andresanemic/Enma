@@ -15,7 +15,7 @@ const FAQS = [
   },
   {
     q: "¿Trabajan solo en la Región de Aysén?",
-    a: "Nuestra base está en Puerto Cisnes y ahí radica nuestra ventaja: conocemos la logística, los costos y la realidad del territorio. Podemos trabajar con clientes de cualquier región del país o del mundo que requieran ingeniería orientada a la Patagonia.",
+    a: "Nuestra base está en Coyhaique y ahí radica nuestra ventaja: conocemos la logística, los costos y la realidad del territorio. Podemos trabajar con clientes de cualquier región del país o del mundo que requieran ingeniería orientada a la Patagonia.",
   },
   {
     q: "¿Pueden ayudar con postulaciones a fondos públicos?",

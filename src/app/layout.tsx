@@ -27,13 +27,18 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://enmachile.com"),
   keywords: ["energía renovable", "Aysén", "Patagonia", "ingeniería energética", "simulaciones CFD", "manufactura sustentable", "huella de carbono"],
   authors: [{ name: "Enma SPA", url: "https://enmachile.com" }],
+  icons: {
+    icon: [{ url: "/isotipos/isotipo-blanco.webp", type: "image/webp" }],
+    shortcut: "/isotipos/isotipo-blanco.webp",
+    apple: "/isotipos/isotipo-blanco.webp",
+  },
   openGraph: {
     locale: "es_CL",
     type: "website",
     siteName: "Enma",
     title: "Enma — Energía y Manufactura Sustentable",
     description:
-      "Soluciones de ingeniería energética y manufactura avanzada desde la Patagonia chilena. Puerto Cisnes, Región de Aysén.",
+      "Soluciones de ingeniería energética y manufactura avanzada desde la Patagonia chilena. Coyhaique, Región de Aysén.",
   },
   twitter: {
     card: "summary_large_image",

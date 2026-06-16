@@ -14,7 +14,7 @@ const CAPABILITIES = [
   "Huella de Carbono", "Túnel de Viento", "Prototipado",
 ];
 const TERRITORY = [
-  "Puerto Cisnes", "Región de Aysén", "Patagonia Chilena",
+  "Coyhaique", "Región de Aysén", "Patagonia Chilena",
   "Sector Público", "Comunidades", "B2B", "I+D", "Sustentabilidad",
 ];
 
@@ -89,7 +89,7 @@ export default function NosotrosPage() {
           <div className="relative z-10 px-6 md:px-14 lg:px-24 pt-36">
             {/* Eyebrow */}
             <p className="h-fade text-orange text-[11px] tracking-[0.28em] uppercase font-body mb-10" style={{ opacity: 0 }}>
-              Quiénes somos · Fundada 2022 · Puerto Cisnes, Aysén
+              Quiénes somos · Fundada 2022 · Coyhaique, Aysén
             </p>
 
             {/* Massive headline */}
@@ -163,7 +163,7 @@ export default function NosotrosPage() {
                 <div className="s-reveal bg-teal text-cream rounded-2xl p-7" style={{ opacity: 0 }}>
                   <p className="text-cream/40 text-[10px] tracking-widest uppercase font-body mb-3">Origen</p>
                   <p className="font-display font-light text-5xl mb-2">2022</p>
-                  <p className="font-body text-sm text-cream/70 leading-relaxed">Fundada en Puerto Cisnes, Región de Aysén, al alero de dos proyectos concretos de energía y upcycling.</p>
+                  <p className="font-body text-sm text-cream/70 leading-relaxed">Fundada en Coyhaique, Región de Aysén, al alero de dos proyectos concretos de energía y upcycling.</p>
                 </div>
                 {/* Diferenciador card */}
                 <div className="s-reveal bg-orange rounded-2xl p-7" style={{ opacity: 0 }}>
