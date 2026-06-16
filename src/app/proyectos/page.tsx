@@ -117,7 +117,7 @@ export default function ProyectosPage() {
 
             <div className="h-fade border-t border-cream/10 pt-8 flex flex-col sm:flex-row justify-between gap-4" style={{ opacity: 0 }}>
               <p className="text-cream/45 font-body text-sm max-w-sm leading-relaxed">
-                Tres proyectos que integran las capacidades de Enma: simulaciones CFD, prototipado físico y formulación de instrumentos públicos.
+                Tres proyectos que integran nuestras capacidades: simulaciones CFD, prototipado físico y formulación de instrumentos públicos.
               </p>
               <div className="flex gap-6">
                 {["UpCycling", "ANID · Turbina", "Túnel de Viento"].map((t, i) => (

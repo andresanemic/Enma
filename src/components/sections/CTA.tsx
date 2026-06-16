@@ -88,7 +88,7 @@ export default function CTA() {
           </div>
 
           <p className="text-teal/70 font-body font-light text-base md:text-lg leading-relaxed mb-14 max-w-xl mx-auto">
-            Como los servicios son a la medida y sin precios fijos, la primera acción es un contacto directo para entender tu necesidad.
+            Trabajamos a la medida: sin tarifas fijas, sin compromiso inicial. El primer paso es una conversación para entender tu desafío.
           </p>
 
           {/* Contact options */}

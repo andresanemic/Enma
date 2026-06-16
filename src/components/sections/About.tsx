@@ -142,7 +142,7 @@ export default function About() {
                 className="fade-item text-ink/65 font-body font-light leading-[1.8] text-[0.95rem] mb-5 max-w-lg"
                 style={{ opacity: 0 }}
               >
-                Enma diseña soluciones sustentables con foco en energía y manufactura. Su nombre
+                Diseñamos soluciones sustentables con foco en energía y manufactura. Nuestro nombre
                 viene de <strong className="font-medium text-teal">EN</strong>ergía y{" "}
                 <strong className="font-medium text-teal">MA</strong>nufactura: resolver, con
                 ingeniería a la medida, los problemas de quienes viven y producen en Aysén.
@@ -256,7 +256,7 @@ export default function About() {
 
         {/* Tagline */}
         <p className="text-teal/40 font-body text-sm tracking-wide mt-10 border-t border-teal/10 pt-8">
-          Servicios para el desarrollo sustentable, con una base tecnológica sólida orientada a la innovación
+          Energía, manufactura y cambio climático: tres áreas de impacto en la Patagonia chilena.
         </p>
       </div>
     </section>

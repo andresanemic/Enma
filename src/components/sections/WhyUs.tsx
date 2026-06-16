@@ -8,12 +8,12 @@ const DISTINCTIONS = [
   {
     num: "01",
     title: "Pertenencia territorial",
-    desc: "Entendemos la logística, los costos y la idiosincrasia de la Patagonia. Diseñamos para el lugar donde se ejecuta.",
+    desc: "Entendemos la logística, los costos y la realidad de la Patagonia. Diseñamos para el lugar donde se ejecuta.",
   },
   {
     num: "02",
     title: "Formulación de proyectos",
-    desc: "Tomamos todas las variables de forma eficiente para desarrollar proyectos integrales y efectivos en cada ecosistema.",
+    desc: "Identificamos el instrumento más adecuado y acompañamos desde la formulación hasta la entrega de resultados.",
   },
   {
     num: "03",

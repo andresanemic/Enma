@@ -135,7 +135,7 @@ export default function BlogPage() {
 
             <div className="h-fade flex items-center justify-between border-t border-cream/10 mt-10 pt-6 gap-4" style={{ opacity: 0 }}>
               <p className="text-cream/35 font-body text-sm max-w-xs leading-relaxed">
-                Columnas y reflexiones de los fundadores de Enma sobre energía, territorio y tecnología.
+                Nuestras columnas y reflexiones sobre energía, territorio y tecnología desde la Patagonia.
               </p>
               <span className="font-display font-light text-cream/15 text-5xl leading-none">03</span>
             </div>

@@ -116,7 +116,7 @@ export default function NosotrosPage() {
             {/* Bottom row */}
             <div className="h-fade flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mt-12 border-t border-cream/10 pt-8" style={{ opacity: 0 }}>
               <p className="text-cream/50 font-body text-sm max-w-sm leading-relaxed">
-                Enma nace de la urgencia de resolver problemas reales de energía en un territorio complejo, con ingeniería a la medida.
+                Nacimos de la urgencia de resolver problemas reales de energía en un territorio complejo, con ingeniería a la medida.
               </p>
               <div className="flex gap-8 text-right">
                 <div>
@@ -153,7 +153,7 @@ export default function NosotrosPage() {
                   "Lo que distingue a Enma no es solo su conocimiento técnico, sino el lugar desde el que lo ejerce."
                 </blockquote>
                 <p className="text-ink/60 font-body leading-[1.8] max-w-xl s-reveal" style={{ opacity: 0, fontSize: "clamp(0.9rem, 1.4vw, 1rem)" }}>
-                  Operar en Aysén —una región aislada, de baja densidad, con altos costos logísticos y energéticos— obliga a entender contextos complejos. Esa comprensión del territorio, sumada a la capacidad de modelar y validar soluciones con herramientas computacionales avanzadas, es el corazón de la propuesta de Enma.
+                  Operar en Aysén —una región aislada, de baja densidad, con altos costos logísticos y energéticos— nos obliga a entender contextos complejos. Esa comprensión del territorio, sumada a la capacidad de modelar y validar soluciones con herramientas computacionales avanzadas, es el corazón de nuestra propuesta.
                 </p>
               </div>
 

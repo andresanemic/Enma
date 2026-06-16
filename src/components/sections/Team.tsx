@@ -117,7 +117,7 @@ export default function Team() {
         </div>
 
         <p className="text-cream/45 font-body text-sm leading-relaxed max-w-lg mb-14">
-          Ambos socios son ingenieros mecánicos con experiencia exitosa como consultores independientes, comprometidos con la región y su gente.
+          Somos dos ingenieros mecánicos con experiencia comprobada como consultores independientes, comprometidos con el territorio y su gente.
         </p>
 
         {/* Founder cards */}
