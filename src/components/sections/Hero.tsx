@@ -195,17 +195,17 @@ export default function Hero() {
               </Link>
             </div>
 
-            {/* Trust signals — hero.md §1.2 */}
+            {/* Trust signals — hero.md §1.2 — solo datos verificados en \docs\que-es-enma.txt */}
             <div
               ref={trustRef}
               style={{ opacity: 0 }}
               className="flex flex-wrap gap-x-4 gap-y-1 text-cream/35 text-[11px] tracking-[0.18em] uppercase font-body"
             >
-              <span>15+ proyectos ejecutados</span>
+              <span>Respaldados por ANID</span>
+              <span aria-hidden="true">·</span>
+              <span>CIEP · GORE · Municipios</span>
               <span aria-hidden="true">·</span>
               <span>Puerto Cisnes, Aysén</span>
-              <span aria-hidden="true">·</span>
-              <span>Chile</span>
             </div>
           </div>
 
