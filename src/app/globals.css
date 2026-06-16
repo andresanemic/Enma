@@ -146,6 +146,13 @@ body {
   }
 }
 
+/* ── GSAP pin spacer — secciones dark ──────────────────────────────────────
+   El .gsap-pin-spacer hereda el fondo del body (cream). Las secciones dark
+   pinned deben forzar su propio color para evitar que se vea cream debajo.   */
+.gsap-pin-spacer:has(#servicios) {
+  background-color: #304B3D;
+}
+
 /* Card hover shimmer */
 .card-hover {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
